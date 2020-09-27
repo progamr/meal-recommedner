@@ -1,5 +1,5 @@
-##Meal Recommender
-
+Meal Recommender
+-----------
 **How To Run it**
 - clone the Repo.
 - ``composer install``
