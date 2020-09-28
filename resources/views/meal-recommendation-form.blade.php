@@ -39,7 +39,7 @@
 </head>
     <body>
         <div class="form-container">
-            <form action="/find-restaurants" method="post" class="form">
+            <form action="/find-restaurants-v2" method="post" class="form">
                 <label for="meal_name">Meal Name</label>
                 <input name="meal_name" type="text"/>
                 <input name="latitude" type="hidden" value="30.121892"/>

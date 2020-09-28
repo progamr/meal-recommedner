@@ -13,3 +13,4 @@ Route::get('/', function () {
  * find recommendations of restaurants based on meal name and user location.
  */
 Route::post('find-restaurants', [\App\Http\Controllers\RestaurantsController::class, 'recommend']);
+Route::post('find-restaurants-v2', [\App\Http\Controllers\RestaurantsController::class, 'recommendV2']);

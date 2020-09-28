@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\RestaurantRepositoryInterface;
+use App\Repositories\Restaurant\RestaurantRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Repositories
+        $this->app->singleton(RestaurantRepositoryInterface::class, RestaurantRepository::class);
     }
 
     /**
