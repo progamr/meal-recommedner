@@ -39,6 +39,9 @@
 </head>
     <body>
         <div class="form-container">
+            @if(isset($errors) && count($errors))
+                <p>{{$errors->first()}}</p>
+            @endif
             <form action="/find-restaurants-v2" method="post" class="form">
                 <label for="meal_name">Meal Name</label>
                 <input name="meal_name" type="text"/>

@@ -14,8 +14,8 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
     private $mealRepository;
     private $restaurantMealRepository;
     public $model;
-    private $count;
-    private $mealRestaurantIds;
+    public $count;
+    public $mealRestaurantIds;
     private $totalRecommendationsCount = 3;
     private $distanceCriteriaWeight = 10;
     private $customersRestaurantRecommendationCriteriaWeight = 5;
@@ -109,7 +109,7 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
             ->take($limit);
     }
 
-    private function getRestaurantsIdsByMealId($mealId)
+    public function getRestaurantsIdsByMealId($mealId)
     {
         return $this->restaurantMealRepository->getModel()
             ->where('meal_id', $mealId)
@@ -119,7 +119,7 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
 
     }
 
-    private function getRestaurantsOrderedByDistance($latitude, $longitude)
+    public function getRestaurantsOrderedByDistance($latitude, $longitude)
     {
         $restaurants = [];
         for($offset=0; $offset <= $this->count; $offset+=1000) {
@@ -143,7 +143,7 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
         return $restaurants;
     }
 
-    private function getRestaurantsOrderedByCustomersRecommendationCount()
+    public function getRestaurantsOrderedByCustomersRecommendationCount()
     {
         $restaurants = [];
         for($offset=0; $offset < $this->count; $offset+=1000) {
@@ -164,12 +164,12 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
         return $restaurants;
     }
 
-    private function getRestaurantsOrderedByMealsRecommendationCount()
+    public function getRestaurantsOrderedByMealsRecommendationCount()
     {
         $restaurants = [];
 
         for($i=0; $i < count($this->mealRestaurantIds); $i++) {
-            $restaurants[][] = [
+            $restaurants[] = [
                 'id' => $this->mealRestaurantIds[$i],
                 'customer_meal_recommendations_value' => $this->customersRestaurantMealRecommendationCriteriaWeight / ($i + 1)
             ];
@@ -178,7 +178,7 @@ class RestaurantRepository extends EloquentRepository implements RestaurantRepos
         return $restaurants;
     }
 
-    private function getRestaurantsOrdersBySuccessfulOrdersCount()
+    public function getRestaurantsOrdersBySuccessfulOrdersCount()
     {
         $restaurants = [];
         for($offset=0; $offset < $this->count; $offset+=1000) {

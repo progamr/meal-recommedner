@@ -14,3 +14,6 @@ Route::get('/', function () {
  */
 Route::post('find-restaurants', [\App\Http\Controllers\RestaurantsController::class, 'recommend']);
 Route::post('find-restaurants-v2', [\App\Http\Controllers\RestaurantsController::class, 'recommendV2']);
+Route::get('find-restaurants-v2', function () {
+    return view('meal-recommendation-form');
+});

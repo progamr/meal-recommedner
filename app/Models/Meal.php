@@ -9,6 +9,8 @@ class Meal extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     /**
      * The meals that belong to the restaurant.
      */
